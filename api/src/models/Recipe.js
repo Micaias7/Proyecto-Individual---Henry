@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define('Recipe', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      defaultValue: DataTypes.UUIDV4(),
       allowNull: false,
       primaryKey: true
     },
@@ -15,18 +15,24 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     summary: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    health_score: {
+    healthScore: {
       type: DataTypes.INTEGER
     },
     steps: {
       type: DataTypes.STRING
+    },
+//agregue image para poder agregarle una img cuando se cree en el post
+    image: {
+      type: DataTypes.STRING,
+      defaultValue: "https://cdn-icons-png.flaticon.com/512/2385/2385961.png"
     }
   });
 };
-
+// si no quiero mostrar  createdAt | updatedAt en db agrego como tercer parametro
+// { timestamps: false }
 
 // [ ] Receta con las siguientes propiedades:
 // ID: *

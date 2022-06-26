@@ -3,6 +3,8 @@ require ("dotenv").config();
 
 const axios = require ("axios");
 const { DB_APIKEY } = process.env;
+const { Recipe, Diet } = require('../db');
+const { Op } = require ("sequelize");
 
 const router = Router();
 
@@ -74,7 +76,7 @@ router.get("/", async (req, res) => {
                 }
             });
             return res.status(200).send(infoRecipes);
-        }
+        };
                         
         let recipesNames = recipes.filter((r) => {
             return r.name.toLowerCase().includes(name.toLowerCase())});
@@ -91,11 +93,12 @@ router.get("/", async (req, res) => {
             });
             return res.status(200).send(dataByName);
         } else {
-            return res.status(404).send({error: "Sorry, recipe not found. But you can create it if you want"})
+            throw new Error("Sorry, recipe not found. But you can create it if you want");
+            // return res.status(404).send({error: "Sorry, recipe not found. But you can create it if you want"})
         }
         
     } catch (error) {
-        console.log(error);
+        return res.status(404).send({error: error.message});
     }
 });
 
@@ -110,8 +113,41 @@ router.get("/:id", async (req, res) => {
         return res.send({msg: "es un UUID"}); 
 
     } catch (error) {
-        return res.send({error: error.response.data.message})
+        return res.send({error: error.response.data.message});
     }
-})
+});
+
+const postErrors = async (name, summary) => {
+    if(!name || !summary) {
+        throw new Error("you must enter a name and a summary for the recipe.");
+    }
+    let findRecipeDb = await Recipe.findOne({where: {name: {[Op.iLike]: name}}});
+    if(findRecipeDb) {
+        throw new Error("A recipe with that name already exists.");
+    }    
+};
+router.post("/", async (req, res) => {
+    const { name, summary, healthScore, steps, image, dietTypes } = req.body;    
+
+    try {
+        await postErrors(name, summary);
+        let newRecipe = await Recipe.create({
+            name,
+            summary,
+            healthScore,
+            steps,
+            image
+        });
+         let dietTypesDb = await Diet.findAll({
+             where: {name: dietTypes}
+        }); // busca las dietas y las conecta con la receta
+        newRecipe.addDiet(dietTypesDb);
+        return res.status(201).send(newRecipe);
+        
+    } catch (error) {
+        return res.status(400).send({error: error.message});
+    }    
+});
+//probar ruta en postman
 
 module.exports = router;
