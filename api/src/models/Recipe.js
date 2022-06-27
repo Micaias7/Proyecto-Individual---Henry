@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue: "https://cdn-icons-png.flaticon.com/512/2385/2385961.png"
     }
-  });
+  }, { timestamps: false });
 };
 // si no quiero mostrar  createdAt | updatedAt en db agrego como tercer parametro
 // { timestamps: false }
