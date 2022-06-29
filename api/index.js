@@ -23,10 +23,10 @@ const { conn } = require('./src/db.js');
 const { loadDietTypes } = require ("./src/controllers/diets");
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: true }).then(async () => {
+  await loadDietTypes();    
   server.listen(3001, () => {
     console.log('%s listening at 3001');
-     loadDietTypes();    
     // eslint-disable-line no-console
   });
 });
