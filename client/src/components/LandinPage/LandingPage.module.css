@@ -1,0 +1,42 @@
+
+.backGround {
+    background-image: url("../images/fondoLandingPage.jpg");
+    overflow: hidden;
+    height: 98vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.welcome {
+    font-size: 6rem;
+}
+
+.ul {
+    margin-bottom: -6rem;
+    -webkit-text-stroke: 3px black;
+    color: mistyrose;
+}
+
+.boton {
+    padding: 20px 60px;
+    background-color: whitesmoke;
+    border-radius: 35%;
+    font-size: 2.2rem;
+    font-family: fangsong;
+    font-weight: unset;
+    cursor: pointer;
+}
+.boton:hover{-webkit-transform:scale(1.3);transform:scale(1.3);}
+.boton {overflow:hidden;}
+
+.footer {
+    font-family: -webkit-body;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3rem;
+    height: 2vh;
+    background-color: gray;
+}
