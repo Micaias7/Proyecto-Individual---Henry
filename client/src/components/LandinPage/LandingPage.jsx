@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import landing from "./LandingPage.module.css"
+import landing from "./LandingPage.module.css";
 
 export default function LandingPage () {
     return (
@@ -11,15 +11,13 @@ export default function LandingPage () {
                         <ul className = {landing.ul}>FOOD APP</ul>
                         <br />
                     </h1>                    
-                        <Link to = "home">
+                    <Link to = "/home">
                         <button className= {landing.boton}>Enter Home</button>
-                        </Link>                
-                    {/* <img className = {landing.gif} src= {gif} alt="" /> */}
+                    </Link>
             </div>
             <div className = {landing.footer}>
                 App create by Gutierrez Micaias
             </div>
-        </div>
-        
-    )
-}
+        </div>        
+    );
+};

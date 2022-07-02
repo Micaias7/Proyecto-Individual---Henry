@@ -1,14 +1,19 @@
 import {
     GET_ALL_RECIPES,
     GET_RECIPE_DETAIL,
-    GET_DIETS_TYPES,
+    GET_DIET_TYPES,
     CREATE_RECIPE,
-    SEARCH_RECIPES
-} from "../actions/types"; 
+    SEARCH_RECIPES,
+    FILTER_BY_DIET_TYPE,
+    FILTER_BY_ORIGIN,
+    ORDER_BY_NAME,
+    ORDER_BY_HEALTH_SCORE
+} from "../actions/types";
 
 const initialState = {
-    recipes: [],
-    dietsTypes: [],
+    recipes: [], //las recetas que se van mostrando de acuerdo a los filtros
+    allRecipes: [], //siempre tengo todas las recetas para filtrar 
+    dietTypes: [],
     recipeDetail: {}
 };
 
@@ -17,12 +22,13 @@ const reducer = (state = initialState, action) => {
         case GET_ALL_RECIPES:
             return {
                 ...state,
-                recipes: action.payload
+                recipes: action.payload,
+                allRecipes: action.payload
             };
-        case GET_DIETS_TYPES:
+        case GET_DIET_TYPES:
             return {
                 ...state,
-                dietsTypes: action.payload
+                dietTypes: action.payload
             };
         case GET_RECIPE_DETAIL:
             return {
@@ -36,7 +42,57 @@ const reducer = (state = initialState, action) => {
         case SEARCH_RECIPES:
             return {
 
-            }       
+            };
+        case FILTER_BY_DIET_TYPE:
+            const allRecipes = state.allRecipes;
+            const recipesFiltered = action.payload === "All" ? allRecipes :
+            allRecipes.filter((r) => r.dietTypes?.some((dt) => dt === action.payload));
+            return {
+                ...state,
+                recipes: recipesFiltered
+            };
+        case FILTER_BY_ORIGIN:
+            const recipes = state.allRecipes;
+            const originFilter = action.payload === "All" ? recipes : 
+            action.payload === "Api" ? recipes.filter((r) => !isNaN(r.id)) :
+            recipes.filter((r) => isNaN(r.id));
+            return {
+                ...state,
+                recipes: originFilter[0] ? originFilter : 
+                [{msg: "There are no recipes created yet. You can create one if you want."}]
+            };
+        case ORDER_BY_NAME:
+            const sortRecipes = action.payload === "ABC" ?
+            state.recipes.sort(function(a, b) {
+                if (a.name > b.name) return 1;
+                if (a.name < b.name) return -1;
+                return 0;
+            }) : 
+            state.recipes.sort(function(a, b) {
+                if (a.name > b.name) return -1;
+                if (a.name < b.name) return 1;
+                return 0;
+            });
+            return {
+                ...state,
+                recipes: sortRecipes
+            };
+        case ORDER_BY_HEALTH_SCORE:
+            const sortByHealthScore = action.payload === "Max" ?
+            state.recipes.sort(function(a, b) {
+                if (a.name > b.name) return 1;
+                if (a.name < b.name) return -1;
+                return 0;
+            }) :
+            state.recipes.sort(function(a, b) {
+                if (a.name > b.name) return -1;
+                if (a.name < b.name) return 1;
+                return 0;
+            });
+            return {
+                ...state,
+                recipes:sortByHealthScore
+            };
         default:
             return state;
     };

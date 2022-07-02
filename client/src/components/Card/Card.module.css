@@ -1,0 +1,17 @@
+
+.container {
+    padding: 10px;
+    margin: 20px;
+    width: 30%;
+    color: blue;
+    background-color: antiquewhite;
+    border-style: groove;
+    border-color: black;
+    min-width: 300px;
+}
+
+.diets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
