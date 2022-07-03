@@ -40,8 +40,13 @@ const reducer = (state = initialState, action) => {
                 ...state
             };
         case SEARCH_RECIPES:
+            const aux = state.allRecipes;
+            const recipesNames = aux.filter((r) => {
+                return r.name.toLowerCase().includes(action.payload.toLowerCase())});
+            if (!recipesNames[0]) return alert ('Recipe Not Found');   
             return {
-
+                ...state,
+                recipes: recipesNames
             };
         case FILTER_BY_DIET_TYPE:
             const allRecipes = state.allRecipes;
@@ -80,13 +85,13 @@ const reducer = (state = initialState, action) => {
         case ORDER_BY_HEALTH_SCORE:
             const sortByHealthScore = action.payload === "Max" ?
             state.recipes.sort(function(a, b) {
-                if (a.name > b.name) return 1;
-                if (a.name < b.name) return -1;
+                if (a.healthScore > b.healthScore) return -1;
+                if (a.healthScore < b.healthScore) return 1;
                 return 0;
             }) :
             state.recipes.sort(function(a, b) {
-                if (a.name > b.name) return -1;
-                if (a.name < b.name) return 1;
+                if (a.healthScore > b.healthScore) return 1;
+                if (a.healthScore < b.healthScore) return -1;
                 return 0;
             });
             return {

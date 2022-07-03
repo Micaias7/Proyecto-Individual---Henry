@@ -44,14 +44,23 @@ export const getDietTypes = () => {
     };
 };
 
-export const searchRecipes = (name) => {
-    return async function (dispatch) {
-        return fetch(`http://localhost:3001/recipes?name=${name}`)
-        .then(response => response.json())
-        .then(response => dispatch({
-            type: SEARCH_RECIPES, payload: response
-        }))
-        .catch(error => console.log(error));
+// export const searchRecipes = (name) => {
+//     return async function (dispatch) {
+//         return fetch(`http://localhost:3001/recipes?name=${name}`)
+//         .then(response => response.json())
+//         .then(response => dispatch({
+//             type: SEARCH_RECIPES, payload: response
+//         }))
+//         .catch(error => {
+//             console.log(error);
+//             return alert ("Recipe not found");
+//         });
+//     };
+// };
+export const searchRecipes = (payload) => {
+    return {
+        type: SEARCH_RECIPES,
+        payload
     };
 };
 

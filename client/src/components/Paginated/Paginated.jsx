@@ -14,8 +14,8 @@ export default function Paginated({recipesXpage, numberOfRecipes, paginado}) {
                 {
                     pages?.map((number) => {
                         return (
-                            <li> 
-                                <button key={number} onClick={() => paginado(number)}> 
+                            <li key={number}> 
+                                <button onClick={() => paginado(number)}> 
                                     {number}
                                 </button> 
                             </li>
