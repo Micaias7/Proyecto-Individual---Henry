@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchRecipes } from "../../actions";
+import SBar from "./SearchBar.module.css";
 
 
 export default function SearchBar () {
@@ -24,14 +25,15 @@ export default function SearchBar () {
     };
 
     return (
-        <div>
+        <div className={SBar.search}>
             <input
+            className={SBar.input}
             type = "text"
             value = {name}
             placeholder = "Search recipe..."
             onChange = {(e) => handleInputChange(e)}
             />
-            <button type = "submit" onClick={(e) => handleSubmit(e)}>Search</button>
+            <button className={SBar.boton} type = "submit" onClick={(e) => handleSubmit(e)}>Search</button>
         </div>
     );
 };

@@ -1,0 +1,9 @@
+.backGround {
+    background-image: url("../images/fondoHome.jpg");
+    height: 80%;
+    background-size: contain;
+}
+
+.BGNav {
+    height: 20%;
+}

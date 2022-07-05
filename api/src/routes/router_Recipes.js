@@ -51,7 +51,8 @@ router.get("/:id", async (req, res) => {
 
 //ruta de creacion de recetas
 router.post("/", async (req, res) => {
-    const { name, summary, healthScore, steps, image, dietTypes } = req.body;    
+    const { name, summary, healthScore, steps, image, dietTypes } = req.body;   
+    const aux = JSON.stringify(steps)
 
     try {
         await postErrors(name, summary);
@@ -59,8 +60,8 @@ router.post("/", async (req, res) => {
             name,
             summary,
             healthScore,
-            steps,
-            image
+            steps: aux,
+            image: image || "https://cdn-icons-png.flaticon.com/512/2385/2385961.png"
         });
          let dietTypesDb = await Diet.findAll({
              where: {name: dietTypes}

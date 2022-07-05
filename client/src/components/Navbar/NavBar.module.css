@@ -1,0 +1,40 @@
+.background {
+    background-image: url("../images/fondoNavbar.jpg");       
+}
+
+.imgF {
+    width: 18%;
+    border-radius: 40%;
+    opacity: 75%;
+    position: relative;
+    left: 45%;
+    top: 20px;
+}
+
+.imgClick {
+    position: relative;
+    width: 10%;
+    right: 53%;
+    top: -3rem;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    bottom: 2rem;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.boton {
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    opacity: 90%;
+    cursor: pointer;
+}
+
+.link {
+    position: relative;
+    right: 18rem;
+}

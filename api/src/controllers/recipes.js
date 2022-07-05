@@ -5,7 +5,7 @@ const { Op } = require ("sequelize");
 
 //trae la info de la API (100 recetas)
 const getInfoApi = async () => {    
-    const response =  await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${DB_APIKEY}&addRecipeInformation=true&number=10`)
+    const response =  await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${DB_APIKEY}&addRecipeInformation=true&number=20`)
     
         let recipes = response.data.results.map((rc) => {
             return {
@@ -31,7 +31,7 @@ const getInfoDB = async () => {
             name: r.name,
             summary: r.summary,
             healthScore: r.healthScore,
-            steps: r.steps,
+            steps: JSON.parse(r.steps),
             image: r.image,
             dietTypes: r.Diets?.map(diet => diet.name)
         };        
@@ -101,7 +101,7 @@ const getDBRecipeById = async (id) => {
         name: recipeDB.name,
         summary: recipeDB.summary,
         healthScore: recipeDB.healthScore,
-        steps: recipeDB.steps,
+        steps: JSON.parse(recipeDB.steps),
         image: recipeDB.image,
         dietTypes: recipeDB.Diets?.map(diet => diet.name)            
     }       

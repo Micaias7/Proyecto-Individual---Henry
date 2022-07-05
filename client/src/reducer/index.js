@@ -5,7 +5,6 @@ import {
     CREATE_RECIPE,
     SEARCH_RECIPES,
     FILTER_BY_DIET_TYPE,
-    FILTER_BY_ORIGIN,
     ORDER_BY_NAME,
     ORDER_BY_HEALTH_SCORE
 } from "../actions/types";
@@ -56,26 +55,16 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 recipes: recipesFiltered
             };
-        case FILTER_BY_ORIGIN:
-            const recipes = state.allRecipes;
-            const originFilter = action.payload === "All" ? recipes : 
-            action.payload === "Api" ? recipes.filter((r) => !isNaN(r.id)) :
-            recipes.filter((r) => isNaN(r.id));
-            return {
-                ...state,
-                recipes: originFilter[0] ? originFilter : 
-                [{msg: "There are no recipes created yet. You can create one if you want."}]
-            };
         case ORDER_BY_NAME:
             const sortRecipes = action.payload === "ABC" ?
             state.recipes.sort(function(a, b) {
-                if (a.name > b.name) return 1;
-                if (a.name < b.name) return -1;
+                if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
                 return 0;
             }) : 
             state.recipes.sort(function(a, b) {
-                if (a.name > b.name) return -1;
-                if (a.name < b.name) return 1;
+                if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
                 return 0;
             });
             return {

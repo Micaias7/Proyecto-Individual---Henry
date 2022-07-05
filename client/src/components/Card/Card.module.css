@@ -3,12 +3,19 @@
     padding: 10px;
     margin: 20px;
     width: 30%;
-    color: blue;
+    color: black;
     background-color: antiquewhite;
-    border-style: groove;
-    border-color: black;
     min-width: 300px;
+    opacity: 93%;
 }
+
+.img {
+    width: 75%;
+    border-style: double;
+    border-color: #2d3293;
+}
+.img:hover{-webkit-transform:scale(1.09);transform:scale(1.09);}
+.img {overflow:hidden;}
 
 .diets {
     display: flex;

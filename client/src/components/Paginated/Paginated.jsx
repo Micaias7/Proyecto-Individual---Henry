@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./Paginated.module.css";
 
 export default function Paginated({recipesXpage, numberOfRecipes, paginado}) {
     const pages = []; //Se va cargando con los numeros de paginas
@@ -9,20 +10,19 @@ export default function Paginated({recipesXpage, numberOfRecipes, paginado}) {
     };
 
     return (
-        <div>            
-            <ul> 
-                {
-                    pages?.map((number) => {
-                        return (
-                            <li key={number}> 
-                                <button onClick={() => paginado(number)}> 
-                                    {number}
-                                </button> 
-                            </li>
-                        )
-                    })
-                } 
-            </ul>
-        </div>
+        <ul className={style.pag}>           
+            {
+                pages?.map((number) => {
+                    return (
+                        <ol key={number}> 
+                            <button className={style.btn} onClick={() => paginado(number)}> 
+                            {number}
+                            </button> 
+                        </ol>
+                    )
+                })
+            } 
+            
+        </ul>
     ); //Renderizo los numeros.Cada numero tiene la funcion para setear la pagina
 };

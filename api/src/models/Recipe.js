@@ -26,8 +26,7 @@ module.exports = (sequelize) => {
     },
 //agregue image para poder agregarle una img cuando se cree en el post
     image: {
-      type: DataTypes.STRING,
-      defaultValue: "https://cdn-icons-png.flaticon.com/512/2385/2385961.png"
+      type: DataTypes.TEXT,
     }
   }, { timestamps: false });
 };

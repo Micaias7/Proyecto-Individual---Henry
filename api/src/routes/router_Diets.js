@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
         let dietTypes = await Diet.findAll();
         return res.status(200).send(dietTypes);
     } catch (error) {
-        return res.status(400).send({error: error.message});        
+        return res.status(400).send({error: error.message});      
     }
 });
 

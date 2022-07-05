@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByDietType, filterByOrign, getAllRecipes, getDietTypes, orderByHealthScore, orderByName } from "../../actions";
+import { filterByDietType, getAllRecipes, getDietTypes, orderByHealthScore, orderByName } from "../../actions";
 import Cards from "../Cards/Cards";
 import Paginated from "../Paginated/Paginated";
 import NavBar from "../Navbar/Navbar";
+import home from "./Home.module.css";
 
 export default function Home () {
     
@@ -42,12 +43,6 @@ export default function Home () {
         setPage(1);
     };
 
-    const handleFilterOrigin = (e) => { //Filtrado por el origen de la receta
-        e.preventDefault();
-        dispatch(filterByOrign(e.target.value));
-        setPage(1);
-    };
-
     const handleOrderByName = (e) => { //Ordena alfabeticamente (asc/desc)
         e.preventDefault();
         dispatch(orderByName(e.target.value));
@@ -59,25 +54,34 @@ export default function Home () {
         e.preventDefault();
         dispatch(orderByHealthScore(e.target.value));
         setPage(1);
-        setOrder(`Order ${e.target.value}`);
+        setOrder(`Order ${e.target.value}`);       
     };
+
 
     return (
         <div>
-            <h1>ESTE ES EL HOME</h1>
-            <NavBar
-                allDiets = {allDiets}
-                handleFilterDiet = {handleFilterDiet}
-                handleFilterOrigin = {handleFilterOrigin}
-                handleOrderByName = {handleOrderByName}
-                handleOrderByHealthScore = {handleOrderByHealthScore}
-            />
-            <Paginated 
-                recipesXpage = {recipesXpage}
-                numberOfRecipes = {allRecipes.length} //le paso la cantidad numerica de recetas
-                paginado = {paginado}
-            />
-            <Cards showRecipes = {showRecipes}/>
+            <div className={home.BGNav}>
+                <NavBar
+                    allDiets = {allDiets}
+                    handleFilterDiet = {handleFilterDiet}
+                    handleOrderByName = {handleOrderByName}
+                    handleOrderByHealthScore = {handleOrderByHealthScore}
+                />
+            </div>            
+            <div className = {home.backGround}>
+                <Paginated 
+                    recipesXpage = {recipesXpage}
+                    numberOfRecipes = {allRecipes.length} //le paso la cantidad numerica de recetas
+                    paginado = {paginado}
+                />
+                <Cards showRecipes = {showRecipes}/>
+                <Paginated
+                    recipesXpage = {recipesXpage}
+                    numberOfRecipes = {allRecipes.length}
+                    paginado = {paginado}
+                />
+                <br/>
+            </div>            
         </div>
     );
 };
