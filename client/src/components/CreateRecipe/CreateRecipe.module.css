@@ -1,4 +1,95 @@
 
-.form {
+.container {
+    background: url("../images/Fondo.avif");
+    background-size: cover ;
+    display: flex;
+    background-position: bottom;
+    flex-direction: column;
+    align-items: center
     
+}
+
+.title{
+    font-size: 5rem;
+    margin: 4px;
+    -webkit-text-stroke: 3px gainsboro;
+    color: black;
+}
+
+.btnBack{
+    font-size: 18px;
+    padding: 6px;
+    padding-inline: 30px;
+    margin: 3px;
+    cursor: pointer;
+}
+.btnBack:hover{-webkit-transform:scale(1.1);transform:scale(1.1);}
+.btnBack {overflow:hidden;}
+
+.form {
+    opacity: 86%;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 8px;
+    width: 47%;
+    height: 80vh;
+    color: black;
+    background-color: antiquewhite;
+    min-width: 300px;
+}
+
+.inputBox {
+    width: 80%;
+}
+
+.inputs {
+    display: flex;    
+    flex-direction: column;    
+    padding: 8px;
+    font-size: 21px;
+}
+
+.textArea {
+    padding: 6px;
+    font-size: 21px;
+}
+
+.errors {
+    color: red;
+    margin: 0;
+}
+
+.selectBox {
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    font-size: 21px;
+    padding: 5px;
+}
+
+.select {
+    font-size: 21px;
+    padding: 3px;
+    width: 120%;
+    cursor: pointer;
+}
+
+.dietTypes {
+    display: flex;
+    font-size: 20px;
+}
+
+.btnX {
+    margin-inline: 9px;
+    color: red;
+}
+
+.btnCreate {
+    font-size: 30px;
+    padding: 6px;
+    padding-inline: 50px;
+    cursor: pointer;
 }

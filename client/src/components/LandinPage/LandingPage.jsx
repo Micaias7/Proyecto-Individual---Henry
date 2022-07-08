@@ -8,7 +8,7 @@ export default function LandingPage () {
             <div className = {landing.backGround}>                
                     <h1 className = {landing.welcome}>
                         <ul className = {landing.ul}> WELCOME TO THE</ul>
-                        <ul className = {landing.ul}>FOOD APP</ul>
+                        <ul className = {landing.ul}>RECIPE APP</ul>
                         <br />
                     </h1>                    
                     <Link to = "/home">

@@ -10,7 +10,7 @@ export default function Card (props) {
             <div className = {card.container}>
                 <h2>{name}</h2>
                 <Link to = {`/recipe/detail/${id}`}>
-                    <img className={card.img} src = {image} alt = "img not found" />
+                    <img className={card.img} src = {image} alt = {image} />
                 </Link>
                 <h3>Healt Score: {healthScore}</h3>
                 <h3>Diet Types:</h3>

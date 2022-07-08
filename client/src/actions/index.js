@@ -7,7 +7,8 @@ import {
     SEARCH_RECIPES,
     FILTER_BY_DIET_TYPE,
     ORDER_BY_NAME,
-    ORDER_BY_HEALTH_SCORE
+    ORDER_BY_HEALTH_SCORE,
+    CLEAN_DETAIL
 } from "./types";
 
 export const getAllRecipes = () => {
@@ -89,6 +90,13 @@ export const orderByHealthScore = (payload) => {
     return {
         type: ORDER_BY_HEALTH_SCORE,
         payload
+    };
+};
+
+export const cleanDetail = () => {
+    return {
+        type: CLEAN_DETAIL,
+        payload: {}
     };
 };
 

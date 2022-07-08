@@ -6,7 +6,8 @@ import {
     SEARCH_RECIPES,
     FILTER_BY_DIET_TYPE,
     ORDER_BY_NAME,
-    ORDER_BY_HEALTH_SCORE
+    ORDER_BY_HEALTH_SCORE,
+    CLEAN_DETAIL
 } from "../actions/types";
 
 const initialState = {
@@ -87,6 +88,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 recipes:sortByHealthScore
             };
+        case CLEAN_DETAIL:
+            return {
+                ...state,
+                recipeDetail: action.payload
+            }    
         default:
             return state;
     };

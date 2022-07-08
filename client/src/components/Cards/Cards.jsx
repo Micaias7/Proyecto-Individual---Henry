@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../Card/Card";
 import style from "./Cards.module.css";
+import loading from "../images/Loading.gif";
 
 export default function Cards({showRecipes}) {
 
@@ -18,7 +19,11 @@ export default function Cards({showRecipes}) {
                             dietTypes = {r.dietTypes}
                         />
                     )                    
-                }):<h1>"cargando..."</h1>
+                }):
+                <div className={style.container}>
+                    <h1>"Loading..."</h1>
+                    <img className={style.img} src={loading} alt="LOADING..." />                    
+                </div>
             }
         </div>
     )

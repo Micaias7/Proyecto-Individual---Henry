@@ -4,3 +4,20 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.container {
+    padding: 10px;
+    margin: 20px;
+    width: 48%;
+    color: black;
+    background-color: antiquewhite;
+    min-width: 300px;
+    opacity: 93%;
+}
+
+.img {
+    width: 75%;
+    border-style: double;
+    border-color: #2d3293;
+    margin-bottom: 5rem;
+}
