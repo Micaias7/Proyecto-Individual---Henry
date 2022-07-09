@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
                     image: rc.image,
                     name: rc.name,
                     dietTypes: rc.dietTypes,
-                    healthScore: rc.healthScore                 
+                    healthScore: rc.healthScore
                 }
             });
             return res.status(200).send(infoRecipes);

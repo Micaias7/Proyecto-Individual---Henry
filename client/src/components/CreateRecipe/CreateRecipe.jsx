@@ -114,7 +114,7 @@ export default function CreateRecipe() {
     const handleSubmit = (e) => { //Creo la receta y seteo el input al estado original
         e.preventDefault();
         // console.log("F",input.steps)
-        if (Object.keys(errors).length === 0 && input.name) {
+        if (Object.keys(errors).length === 0 && input.name) { //Se crea solo si no hay errores
             dispatch(createRecipe(input));        
             setInput({
                 name: "",
