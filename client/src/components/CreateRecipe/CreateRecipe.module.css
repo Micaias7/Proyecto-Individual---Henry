@@ -5,8 +5,8 @@
     display: flex;
     background-position: bottom;
     flex-direction: column;
-    align-items: center
-    
+    align-items: center;
+    min-height: 100vh    
 }
 
 .title{
