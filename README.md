@@ -43,7 +43,13 @@ donde ``DB_USER`` es el usuario de su base de datos, ``DB_PASSWORD`` es la passw
 ## Resultados 
 ### **Sí ha completado los pasos exitosamente en su navegador deberia visualizar una aplicacion como esta:**
 
-<img src="./imagenes.Landing.png"/>
-<img src=""/>
-<img src=""/>
-<img src=""/>
+<img src="./imagenes/Landing.png" alt= "Landing"/>
+
+### ** El inicio de la pagina, donde tendra las recetas y la posibilidad de ordenar, filtrar y buscar una receta especifica **
+<img src="./imagenes/Home.png" alt= "Home"/>
+
+### ** El detalle de la receta**
+<img src="./imagenes/Detail.png" alt= "Detail"/>
+
+### ** Un formulario de creacion de recetas**
+<img src="./imagenes/Creation.png" alt= "Creation"/>
