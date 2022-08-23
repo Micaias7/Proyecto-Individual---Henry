@@ -27,15 +27,22 @@ export default function Home () {
 
     const paginado = (pageNumber) => { //Funcion que setea el numero de pagina
         setPage(pageNumber);
+        localStorage.setItem('page', JSON.stringify(pageNumber));
     };
 
-    useEffect(() => { // Carga las recetas cuando se monta el componente
-        dispatch(getAllRecipes());
-    },[dispatch]);
+    const handlePage = () => {
+        var pag = JSON.parse(localStorage.getItem('page'));
+        console.log(pag)
+        if (pag) setPage(pag);
+    }
 
-    useEffect(() => { // Carga las dietas cuando se monta el componente
-        dispatch(getDietTypes());
-    },[dispatch]);
+    useEffect(() => { // Carga las recetas cuando se monta el componente
+        if(!allRecipes.length) {
+            dispatch(getAllRecipes());
+        }
+        dispatch(getDietTypes()); // Carga las dietas cuando se monta el componente
+        handlePage();
+    },[]); //eslint-disable-line
 
     const handleFilterDiet = (e) => { //Filtrado por tipo de dieta
         e.preventDefault();
@@ -73,12 +80,14 @@ export default function Home () {
                     recipesXpage = {recipesXpage}
                     numberOfRecipes = {allRecipes.length} //le paso la cantidad numerica de recetas
                     paginado = {paginado}
+                    page = {page}
                 />
                 <Cards showRecipes = {showRecipes}/>
                 <Paginated
                     recipesXpage = {recipesXpage}
                     numberOfRecipes = {allRecipes.length}
                     paginado = {paginado}
+                    page = {page}
                 />
                 <br/>
             </div>            

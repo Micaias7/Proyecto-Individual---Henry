@@ -13,7 +13,7 @@ export default function RecipeDetail(props) {
     useEffect(() => {
         dispatch(getRecipeDetail(id));
         return () => dispatch(cleanDetail()); //limpio el estado de detalle cuando se desmonta el componente
-    },[dispatch]); //eslint-disable-line
+    },[]); //eslint-disable-line
 
     const recipe = useSelector((state) => state.recipeDetail);
     return (
@@ -56,10 +56,10 @@ export default function RecipeDetail(props) {
                                     <div className={css.stepsBox}>
                                         {recipe.steps?.map((st, index) => {
                                             return (
-                                                <>
-                                                 <p className={css.stepN} key={index}>Step {index + 1}</p>
-                                                 <p className={css.step} key= {st}>{st}</p>
-                                                </>
+                                                <div key={index}>
+                                                 <p className={css.stepN}>Step {index + 1}</p>
+                                                 <p className={css.step}>{st}</p>
+                                                </div>
                                             )
                                         })}
                                     </div>

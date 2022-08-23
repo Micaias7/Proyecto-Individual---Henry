@@ -37,7 +37,9 @@ const reducer = (state = initialState, action) => {
             };
         case CREATE_RECIPE:
             return {
-                ...state
+                ...state,
+                recipes: [ action.payload, ...state.recipes],
+                allRecipes: [ action.payload, ...state.allRecipes]
             };
         case SEARCH_RECIPES:
             const aux = state.allRecipes;

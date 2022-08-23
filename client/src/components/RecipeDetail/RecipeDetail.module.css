@@ -1,5 +1,6 @@
 .fondo {
     background-image: url("../images/fondoDetail.jpg");
+    min-height: 100vh;
 }
 
 .divBack {

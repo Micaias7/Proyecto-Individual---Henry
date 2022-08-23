@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { createRecipe, getDietTypes } from "../../actions";
+import { createRecipe, getAllRecipes, getDietTypes } from "../../actions";
 import css from "./CreateRecipe.module.css";
 
 
@@ -12,7 +12,10 @@ export default function CreateRecipe() {
 
     useEffect(() => { // Carga las recetas cuando se monta el componente
         dispatch(getDietTypes());
-    },[dispatch]);
+        if(!recipes.length) {
+            dispatch(getAllRecipes());
+        }
+    },[]); //eslint-disable-line
 
     const[errors, setErrors] = useState({}); //Estado local de errores
     function validate(input) { // Funcion para validar los inputs
@@ -206,10 +209,10 @@ export default function CreateRecipe() {
                         }
                         {
                             input.dietTypes.map((dt, index) =>
-                                <>
-                                   <div key={index}>{dt}</div>
+                                <div key={index} className={css.divT}>
+                                   <div>{dt}</div>
                                    <button className={css.btnX} onClick={(e) => handleDelete(e, dt)}>X</button>
-                                </>
+                                </div> 
                             )
                         }  
                     </div>                         
