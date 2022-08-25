@@ -9,6 +9,7 @@ import {
     ORDER_BY_HEALTH_SCORE,
     CLEAN_DETAIL
 } from "../actions/types";
+import Swal from 'sweetalert2';
 
 const initialState = {
     recipes: [], //las recetas que se van mostrando de acuerdo a los filtros
@@ -45,7 +46,14 @@ const reducer = (state = initialState, action) => {
             const aux = state.allRecipes;
             const recipesNames = aux.filter((r) => {
                 return r.name.toLowerCase().includes(action.payload.toLowerCase())});
-            if (!recipesNames[0]) return alert ('Recipe Not Found');   
+            if (!recipesNames[0]) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Recipe Not Found',
+                });
+                return {...state};
+            };
             return {
                 ...state,
                 recipes: recipesNames
@@ -53,19 +61,19 @@ const reducer = (state = initialState, action) => {
         case FILTER_BY_DIET_TYPE:
             const allRecipes = state.allRecipes;
             const recipesFiltered = action.payload === "All" ? allRecipes :
-            allRecipes.filter((r) => r.dietTypes?.some((dt) => dt === action.payload));
+            allRecipes && allRecipes.filter((r) => r.dietTypes?.some((dt) => dt === action.payload));
             return {
                 ...state,
                 recipes: recipesFiltered
             };
         case ORDER_BY_NAME:
             const sortRecipes = action.payload === "ABC" ?
-            state.recipes.sort(function(a, b) {
+            state.recipes && state.recipes.sort(function(a, b) {
                 if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
                 if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
                 return 0;
             }) : 
-            state.recipes.sort(function(a, b) {
+            state.recipes && state.recipes.sort(function(a, b) {
                 if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
                 if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
                 return 0;
@@ -76,12 +84,12 @@ const reducer = (state = initialState, action) => {
             };
         case ORDER_BY_HEALTH_SCORE:
             const sortByHealthScore = action.payload === "Max" ?
-            state.recipes.sort(function(a, b) {
+            state.recipes && state.recipes.sort(function(a, b) {
                 if (a.healthScore > b.healthScore) return -1;
                 if (a.healthScore < b.healthScore) return 1;
                 return 0;
             }) :
-            state.recipes.sort(function(a, b) {
+            state.recipes && state.recipes.sort(function(a, b) {
                 if (a.healthScore > b.healthScore) return 1;
                 if (a.healthScore < b.healthScore) return -1;
                 return 0;

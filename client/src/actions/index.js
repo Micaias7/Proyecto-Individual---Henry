@@ -10,20 +10,28 @@ import {
     ORDER_BY_HEALTH_SCORE,
     CLEAN_DETAIL
 } from "./types";
+import Swal from 'sweetalert2';
 
 export const getAllRecipes = () => {
     return function (dispatch) {
-        return axios("http://localhost:3001/recipes")
+        return axios("/recipes")
         .then(response => dispatch({
             type: GET_ALL_RECIPES, payload: response.data
         }))
-        .catch(error => console.log(error));         
+        .catch(error => {
+            console.log(error);
+            return Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Orders sold out, come back tomorrow.',
+            });
+        });         
     };
 };
 
 export const getRecipeDetail = (id) => {
     return function (dispatch) {
-        return axios(`http://localhost:3001/recipes/${id}`)
+        return axios(`/recipes/${id}`)
         .then(response => dispatch({
             type: GET_RECIPE_DETAIL, payload: response.data
         }))
@@ -33,7 +41,7 @@ export const getRecipeDetail = (id) => {
 
 export const getDietTypes = () => {
     return function (dispatch) {
-        return axios("http://localhost:3001/diets")
+        return axios("/diets")
         .then(response => dispatch({
             type: GET_DIET_TYPES, payload: response.data.map(dt => dt.name)
         }))
@@ -43,7 +51,7 @@ export const getDietTypes = () => {
 
 // // export const searchRecipes = (name) => {
 // //     return function (dispatch) {
-// //         return axios(`http://localhost:3001/recipes?name=${name}`)
+// //         return axios(`/recipes?name=${name}`)
 // //         .then(response => dispatch({
 // //             type: SEARCH_RECIPES, payload: response.data
 // //         }))
@@ -64,7 +72,7 @@ export const searchRecipes = (payload) => {
 export const createRecipe = (recipe) => {   
     
     return function (dispatch) {
-        return axios.post("http://localhost:3001/recipes", recipe)
+        return axios.post("/recipes", recipe)
         .then(response => dispatch({
             type: CREATE_RECIPE, payload: response.data
         }))

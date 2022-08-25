@@ -22,7 +22,7 @@ export default function Home () {
     //obtengo los indices de las recetas que voy a mostrar
     let indexLastRecipe = page * recipesXpage; // 9
     let indexFirstRecipe = indexLastRecipe - recipesXpage; //0
-    let showRecipes = allRecipes.slice(indexFirstRecipe, indexLastRecipe);
+    let showRecipes = allRecipes && allRecipes.slice(indexFirstRecipe, indexLastRecipe);
     //Extraigo solo las recetas que voy a mostrar de acuerdo a los indices
 
     const paginado = (pageNumber) => { //Funcion que setea el numero de pagina
@@ -34,12 +34,14 @@ export default function Home () {
         var pag = JSON.parse(localStorage.getItem('page'));
         console.log(pag)
         if (pag) setPage(pag);
-    }
+    };
 
     useEffect(() => { // Carga las recetas cuando se monta el componente
-        if(!allRecipes.length) {
-            dispatch(getAllRecipes());
-        }
+        if (allRecipes !== undefined) {
+            if(!allRecipes.length) {
+                dispatch(getAllRecipes());
+            };
+        };
         dispatch(getDietTypes()); // Carga las dietas cuando se monta el componente
         handlePage();
     },[]); //eslint-disable-line
@@ -78,14 +80,14 @@ export default function Home () {
             <div className = {home.backGround}>
                 <Paginated 
                     recipesXpage = {recipesXpage}
-                    numberOfRecipes = {allRecipes.length} //le paso la cantidad numerica de recetas
+                    numberOfRecipes = {allRecipes && allRecipes.length} //le paso la cantidad numerica de recetas
                     paginado = {paginado}
                     page = {page}
                 />
                 <Cards showRecipes = {showRecipes}/>
                 <Paginated
                     recipesXpage = {recipesXpage}
-                    numberOfRecipes = {allRecipes.length}
+                    numberOfRecipes = {allRecipes && allRecipes.length}
                     paginado = {paginado}
                     page = {page}
                 />

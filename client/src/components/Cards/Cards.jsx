@@ -8,7 +8,7 @@ export default function Cards({showRecipes}) {
     return (
         <div className = {style.box}>
             {
-                showRecipes[0]?showRecipes.map((r) => {
+                showRecipes && showRecipes[0]?showRecipes.map((r) => {
                     return (                        
                         <Card
                             key = {r.id}

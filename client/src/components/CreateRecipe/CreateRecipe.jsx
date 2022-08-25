@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { createRecipe, getAllRecipes, getDietTypes } from "../../actions";
 import css from "./CreateRecipe.module.css";
+import Swal from 'sweetalert2';
 
 
 export default function CreateRecipe() {
@@ -10,11 +11,15 @@ export default function CreateRecipe() {
     const dietTypes = useSelector((state) => state.dietTypes);
     const recipes = useSelector((state) => state.allRecipes);
 
+    const history = useHistory();
+
     useEffect(() => { // Carga las recetas cuando se monta el componente
         dispatch(getDietTypes());
-        if(!recipes.length) {
-            dispatch(getAllRecipes());
-        }
+       if (recipes !== undefined) {
+           if(!recipes.length) {
+               dispatch(getAllRecipes());
+           };
+       };
     },[]); //eslint-disable-line
 
     const[errors, setErrors] = useState({}); //Estado local de errores
@@ -128,10 +133,27 @@ export default function CreateRecipe() {
                 steps: []
             });
             setAux({step1:[], step2:[], step3:[]});
-            alert("Successful creation");
+            localStorage.setItem('page', JSON.stringify(1));
+            Swal.fire({
+                title: 'Successful creation',
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#2aa422',
+                confirmButtonText: 'Back to Home',
+                cancelButtonText: 'Continue creating'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    history.push("/home");                 
+                }
+              });
         } else {
-            alert("Complete the required fields")
-        }
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Complete the required fields',
+              });
+        };
     };
 
     const handleDelete = (e, dt) => { //Borra los tipos de dietas que se agregan

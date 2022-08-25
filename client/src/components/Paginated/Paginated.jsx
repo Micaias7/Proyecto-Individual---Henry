@@ -15,7 +15,7 @@ export default function Paginated({recipesXpage, numberOfRecipes, paginado, page
                 pages?.map((number) => {
                     return (
                         <ol key={number}> 
-                            <button className={page == number ? style.btnActive : style.btn} onClick={() => paginado(number)}> 
+                            <button className={page === number ? style.btnActive : style.btn} onClick={() => paginado(number)}> 
                             {number}
                             </button> 
                         </ol>

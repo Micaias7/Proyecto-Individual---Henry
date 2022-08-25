@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchRecipes } from "../../actions";
 import SBar from "./SearchBar.module.css";
+import Swal from 'sweetalert2';
 
 
 export default function SearchBar () {
@@ -20,8 +21,13 @@ export default function SearchBar () {
             dispatch(searchRecipes(name));
             setName('');
         } else {
-            return alert ("Please write a name");
-        }
+            Swal.fire({
+                position: 'top',
+                title: 'Please write a name',
+                showConfirmButton: false,
+                timer: 1500
+              });
+        };
     };
 
     return (
