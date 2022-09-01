@@ -65,7 +65,7 @@
     margin: 9px;
     background-color: #e1ffae;
     border-radius: 30%;
-    opacity: 95%;
+    opacity: .95;
 }
 .gif {
     width: 10rem;
@@ -104,7 +104,7 @@
 
 .summarybox {
     background-color: rgb(251, 216, 192);
-    opacity: 87%;
+    opacity: .87;
     height: 25rem;
     font-size: 23px;
     padding: 3px;
@@ -118,7 +118,7 @@
 
 .stepsBox {
     background-image: url("../images/fondoSteps.jpg");
-    opacity: 77%;
+    opacity: .77;
     margin: 4px;
     padding: 3px;
     display: flex;
@@ -148,7 +148,7 @@
     color: black;
     background-color: antiquewhite;
     min-width: 300px;
-    opacity: 93%;
+    opacity: .93;
 }
 .imgL {
     width: 75%;

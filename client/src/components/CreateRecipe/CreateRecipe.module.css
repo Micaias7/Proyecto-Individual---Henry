@@ -27,7 +27,7 @@
 .btnBack {overflow:hidden;}
 
 .form {
-    opacity: 86%;
+    opacity: .86;
     border-radius: 50px;
     display: flex;
     flex-direction: column;
