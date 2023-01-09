@@ -19,7 +19,7 @@ Incluye la funcionalidad de buscar recetas por nombre, y en un formulario contro
 Tecnologías usadas:
 JavaScript, React Js, Redux, HTML, CSS, Node Js, Express, PostgresSQL, Sequelize.
 
-Ver pagina online https://recipe-app-lyart-nine.vercel.app/
+Ver pagina online https://recipe-app-micaias7.vercel.app/
 
 
 ## Como iniciar
